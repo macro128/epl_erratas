@@ -1,0 +1,14 @@
+[project]
+name = "epl-erratas"
+description = "App for generating EPL errata reports"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dynamic = ["version"]
+
+dependencies = [
+    "streamlit>=1.15.2",
+]
+
+[tool.pdm]
+version = { source = "file", path = "erratas/__init__.py" }
