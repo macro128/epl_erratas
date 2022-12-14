@@ -12,3 +12,57 @@ dependencies = [
 
 [tool.pdm]
 version = { source = "file", path = "erratas/__init__.py" }
+
+[tool.isort]
+honor_noqa = true
+profile = "black"
+combine_star = true
+remove_redundant_aliases = true
+multi_line_output = 3
+
+
+[tool.flake8]
+inline-quotes = "double"
+max-line-length = 120
+extend-ignore = "E203"
+
+ignore = [
+    # Too broad except
+    "E722",
+    # Missing docstring in __init__
+    "D107",
+    # Found `__init__.py` module with logic
+    "WPS412", "WPS326",
+]
+
+per-file-ignores = [
+    # all init files
+    "__init__.py:",
+    # ignore not used imports
+    "F401",
+    # ignore import with wildcard
+    "F403",
+    # Found wrong metadata variable
+    "WPS410",
+    # all tests
+    "test_*.py,tests.py,tests_*.py,*/tests/*,conftest.py:",
+    # Use of assert detected
+    "S101",
+    # Found outer scope names shadowing
+    "WPS442",
+    # Found too many local variables
+    "WPS210",
+    # Found magic number
+    "WPS432",
+    # Missing parameter(s) in Docstring
+    "DAR101",
+    # Found too many arguments
+    "WPS211",
+]
+
+exclude = [
+    "./.git",
+    "./venv",
+    "migrations",
+    "./var",
+]
