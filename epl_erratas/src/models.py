@@ -117,7 +117,7 @@ class LibraryBase(ABC):
     Must be implemented to load vendors' highlights.
     """
 
-    def __init__(self, highlights: str):
+    def __init__(self, highlights: bytes | str):
         self._books: dict[str, Book] = dict()
         self._highlights = highlights
 
@@ -193,7 +193,10 @@ class LibraryBase(ABC):
         Get updated highlights file
         :return: highlights bytes
         """
-        return self._highlights.encode("utf-8")
+        highlights = self._highlights
+        if isinstance(highlights, str):
+            highlights = highlights.encode("utf-8")
+        return highlights
 
     def __str__(self):
         return "Books:\n" + "\n".join(str(b) for b in self.books)
