@@ -2,7 +2,7 @@ import streamlit as st
 
 try:
     from epl_erratas.src.libraries import KoboLibrary
-except ImportError:
+except ModuleNotFoundError:
     import os
     from pathlib import Path
 
