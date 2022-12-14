@@ -4,7 +4,7 @@ import sqlite3
 from contextlib import closing
 from tempfile import NamedTemporaryFile
 
-from epl_erratas.src.models import Book, Erratum, LibraryBase
+from src.models import Book, Erratum, LibraryBase
 
 
 class KoboLibrary(LibraryBase):
@@ -61,7 +61,7 @@ class KoboLibrary(LibraryBase):
                     """,
                 ).fetchall()
 
-        self._books = dict()
+        self._books: dict[str, Book] = dict()
 
         for (
             book_id,
