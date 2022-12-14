@@ -13,6 +13,10 @@ dependencies = [
 [tool.pdm]
 version = { source = "file", path = "erratas/__init__.py" }
 
+[tool.mypy]
+python_version = "3.10"
+pretty = true
+
 [tool.isort]
 honor_noqa = true
 profile = "black"
