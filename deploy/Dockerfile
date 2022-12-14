@@ -5,17 +5,15 @@ FROM mambaorg/micromamba:jammy AS dev
 # install PDM
 COPY ./deploy/env.yml .
 RUN --mount=type=cache,target=/opt/conda/pkgs,id=mamba,mode=0775,uid=1000,gid=1000,sharing=locked \
-    micromamba install -y -f env.yml -n base
+    micromamba install -y -f env.yml -n base && \
+    micromamba clean --all -y
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 ARG dependencies=":all"
 
 # install dependencies
 COPY pyproject.toml *.lock ./
-RUN --mount=type=cache,target=/opt/cache,id=mamba,mode=0775,uid=1000,gid=1000,sharing=locked \
-    pdm config install.cache on && \
-    pdm config cache_dir /opt/cache && \
-    python -c "print(' -G'.join('"$dependencies"'.split(',')))" |  \
+RUN python -c "print(' -G'.join('"$dependencies"'.split(',')))" |  \
     xargs pdm install --no-lock --no-editable --no-self -G
 
 # prod stage

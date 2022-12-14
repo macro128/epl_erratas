@@ -4,8 +4,8 @@ services:
       args:
         dependencies: test
     image: epl-erratas:latest-dev
-    user: "${UID_GID}"
+#    user: "${UID_GID}"
     volumes:
       - ../:/app/src/
     environment:
-      STREAMLIT_SERVER_FILE_WATCHER_TYPE: "auto"
+      STREAMLIT_SERVER_FILE_WATCHER_TYPE: "watchdog"
