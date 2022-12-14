@@ -4,7 +4,7 @@ import sqlite3
 from contextlib import closing
 from tempfile import NamedTemporaryFile
 
-from src.models import Book, Erratum, LibraryBase
+from epl_erratas.src.models import Book, Erratum, LibraryBase
 
 
 class KoboLibrary(LibraryBase):

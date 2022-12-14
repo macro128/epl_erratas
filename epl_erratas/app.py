@@ -1,6 +1,16 @@
 import streamlit as st
-from src.libraries import KoboLibrary
-from src.models import Book, Erratum
+
+try:
+    from epl_erratas.src.libraries import KoboLibrary
+except ImportError:
+    import os
+    from pathlib import Path
+
+    _python_path = os.getenv("PYTHONPATH", "")
+    os.environ["PYTHONPATH"] = f"{Path(__file__).parent.absolute()}:{_python_path}"
+    from epl_erratas.src.libraries import KoboLibrary
+
+from epl_erratas.src.models import Book, Erratum
 
 AVAILABLE_LIBRARIES = {lib.highlights_format: lib for lib in [KoboLibrary]}
 
