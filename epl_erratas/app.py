@@ -7,7 +7,9 @@ except ModuleNotFoundError:
     from pathlib import Path
 
     _python_path = os.getenv("PYTHONPATH", "")
-    os.environ["PYTHONPATH"] = f"{Path(__file__).parent.absolute()}:{_python_path}"
+    os.environ[
+        "PYTHONPATH"
+    ] = f"{Path(__file__).parent.parent.absolute()}:{_python_path}"
     from epl_erratas.src.libraries import KoboLibrary
 
 from epl_erratas.src.models import Book, Erratum
