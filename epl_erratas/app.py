@@ -1,7 +1,6 @@
 import streamlit as st
-
-from epl_erratas.src.libraries import KoboLibrary
-from epl_erratas.src.models import Book, Erratum
+from src.libraries import KoboLibrary
+from src.models import Book, Erratum
 
 AVAILABLE_LIBRARIES = {lib.highlights_format: lib for lib in [KoboLibrary]}
 
