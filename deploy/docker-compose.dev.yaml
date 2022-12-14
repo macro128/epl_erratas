@@ -7,5 +7,3 @@ services:
 #    user: "${UID_GID}"
     volumes:
       - ../:/app/src/
-    environment:
-      STREAMLIT_SERVER_FILE_WATCHER_TYPE: "watchdog"
