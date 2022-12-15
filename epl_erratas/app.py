@@ -23,7 +23,7 @@ def write_erratum(erratum: Erratum):
         st.markdown(f"**Errata**\n\n{erratum.highlight}")
     with col2:
         erratum.correction = st.text_area(
-            "Corrección",
+            "**Corrección**",
             erratum.correction,
             height=int(len(erratum.highlight) * 0.6),
         ).strip()
@@ -75,7 +75,7 @@ def main():
         st.warning("El archivo seleccionado no contiene anotaciones")
         st.stop()
 
-    book: Book = st.sidebar.selectbox("Selecciona un libro", books)
+    book: Book = st.sidebar.selectbox("Selecciona un libro", books, key="books")
     st.sidebar.subheader("Opciones del libro")
     sort_options = {
         "Fecha de creación": "date",
