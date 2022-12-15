@@ -75,7 +75,12 @@ def main():
         st.warning("El archivo seleccionado no contiene anotaciones")
         st.stop()
 
-    book: Book = st.sidebar.selectbox("Selecciona un libro", books, key="books")
+    book_idx = st.sidebar.selectbox(
+        "Selecciona un libro",
+        range(len(books)),
+        format_func=lambda b: books[b],
+    )
+    book: Book = books[book_idx]
     st.sidebar.subheader("Opciones del libro")
     sort_options = {
         "Fecha de creación": "date",
