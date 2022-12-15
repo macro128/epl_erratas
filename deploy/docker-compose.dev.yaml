@@ -4,6 +4,9 @@ services:
       args:
         dependencies: test
     image: epl-erratas:latest-dev
+    platform: linux/arm64
 #    user: "${UID_GID}"
     volumes:
       - ../:/app/src/
+    environment:
+      STREAMLIT_SERVER_FILE_WATCHER_TYPE: "watchdog"
