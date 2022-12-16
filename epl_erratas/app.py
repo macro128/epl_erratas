@@ -15,20 +15,25 @@ AVAILABLE_LIBRARIES = {lib.highlights_format: lib for lib in [KoboLibrary]}
 
 
 def write_erratum(erratum: Erratum):
-    _, col0, col1, col2, _ = st.columns([0.5, 1.5, 8, 8, 1])
+    columns = [0.5, 1, 8, 8, 0.5]
+    _, col0, col1, col2, _ = st.columns(columns)
     with col0:
-        st.write("\n")
-        st.checkbox("", key=erratum, help="Desmarcar para omitir anotación en reporte")
+        st.checkbox(
+            "Seleccionar anotación",
+            key=erratum,
+            help="Desmarcar para omitir anotación en reporte",
+            label_visibility="collapsed",
+        )
     with col1:
-        st.markdown(f"**Errata**\n\n{erratum.highlight}")
+        st.markdown(f"**Errata**\n\n{erratum.highlight.strip()}")
     with col2:
         erratum.correction = st.text_area(
             "**Corrección**",
-            erratum.correction,
-            height=int(len(erratum.highlight) * 0.6),
+            erratum.correction.strip(),
+            height=int(len(erratum.highlight.strip()) * 0.7),
         ).strip()
 
-    _, col1, col2, _ = st.columns([2, 8, 8, 1])
+    _, _, col1, col2, _ = st.columns(columns)
     with col1:
         if erratum.position > -1:
             st.markdown(f"**Posición**\n\n{erratum.position}")
