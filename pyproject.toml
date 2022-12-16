@@ -7,11 +7,16 @@ license = { file = "LICENSE" }
 dynamic = ["version"]
 
 dependencies = [
-    "streamlit>=1.15.2",
+    "streamlit>=1.16.0",
 ]
 
 [tool.pdm]
 version = { source = "file", path = "erratas/__init__.py" }
+
+[tool.pdm.scripts]
+export = "pdm export -f requirements --without-hashes -o epl_erratas/requirements.txt"
+update = "pdm update {args} --no-self --no-sync"
+update_export = { composite = ["update {args}", "export"] }
 
 [tool.mypy]
 python_version = "3.10"
